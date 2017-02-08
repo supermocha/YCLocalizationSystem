@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  LocalizationSystem
+
+  Created by Yuchi Chen on 2017/2/8.
+  Copyright © 2017年 Yuchi Chen. All rights reserved.
+*/
+
+"hello" = "你好";
+"morning" = "早安";

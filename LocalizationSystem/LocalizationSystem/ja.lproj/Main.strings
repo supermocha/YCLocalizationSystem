@@ -1,0 +1,21 @@
+
+/* Class = "UIButton"; normalTitle = "Next"; ObjectID = "8mA-fu-yPI"; */
+"8mA-fu-yPI.normalTitle" = "次のページ";
+
+/* Class = "UIButton"; normalTitle = "English"; ObjectID = "EzG-6v-eEz"; */
+"EzG-6v-eEz.normalTitle" = "English";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "UH6-Hb-Elj"; */
+"UH6-Hb-Elj.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Back"; ObjectID = "Z6z-qv-swg"; */
+"Z6z-qv-swg.normalTitle" = "前のページ ";
+
+/* Class = "UIButton"; normalTitle = "繁體中文"; ObjectID = "eYo-9J-i5e"; */
+"eYo-9J-i5e.normalTitle" = "繁體中文";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "m5V-o7-A8s"; */
+"m5V-o7-A8s.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "日文"; ObjectID = "oFf-lv-nxS"; */
+"oFf-lv-nxS.normalTitle" = "日本語";
