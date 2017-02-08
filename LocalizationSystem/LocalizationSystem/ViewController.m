@@ -24,8 +24,7 @@
 {
     [super viewDidLoad];
     
-    self.titleLabel.text = YCLocalizedString(@"hello");
-    [self.nextButton setTitle:YCLocalizedStringFromTable(@"8mA-fu-yPI.normalTitle", @"Main") forState:UIControlStateNormal];
+    [self setText];
 }
 
 - (void)didReceiveMemoryWarning
