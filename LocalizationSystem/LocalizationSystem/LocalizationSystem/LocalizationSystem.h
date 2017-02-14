@@ -21,13 +21,17 @@
 #define YCDeviceLanguage \
 [[LocalizationSystem sharedInstance] deviceLanguage]
 
+#define YCLanguage \
+[[LocalizationSystem sharedInstance] language]
+
 #import <Foundation/Foundation.h>
 
 @interface LocalizationSystem : NSObject
 
+@property (nonatomic, strong) NSString *language;
+
 + (LocalizationSystem *)sharedInstance;
 - (NSString *)deviceLanguage;
 - (NSString *)localizedStringForKey:(NSString *)key value:(NSString *)value table:(NSString *)tableName;
-- (void)setLanguage:(NSString *)lang;
 
 @end

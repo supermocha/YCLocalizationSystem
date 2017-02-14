@@ -8,10 +8,14 @@
 
 #import "LocalizationSystem.h"
 
+static NSString *kPreferredLanguage = @"PreferredLanguage";
+static NSString *kDeviceLanguage = @"DeviceLanguage";
+
 @interface LocalizationSystem()
-
-@property (nonatomic, strong) NSBundle *bundle;
-
+{
+    NSBundle *bundle;
+    NSUserDefaults *userDefaults;
+}
 @end
 
 @implementation LocalizationSystem
@@ -30,8 +34,18 @@
 {
     self = [super init];
     if (self) {
-        self.bundle = [NSBundle mainBundle];
-        [self setLanguage:[[NSLocale preferredLanguages] firstObject]];
+        bundle = [NSBundle mainBundle];
+        userDefaults = [NSUserDefaults standardUserDefaults];
+        
+        if ([userDefaults objectForKey:kPreferredLanguage]) {
+            self.language = [userDefaults objectForKey:kPreferredLanguage];
+        }
+        else {
+            NSString *currentDeviceLangugae = [[NSLocale preferredLanguages] firstObject];
+            [userDefaults setObject:currentDeviceLangugae forKey:kDeviceLanguage];
+            [userDefaults synchronize];
+            self.language = currentDeviceLangugae;
+        }
     }
     return self;
 }
@@ -41,25 +55,34 @@
     return [[NSLocale preferredLanguages] firstObject];
 }
 
-- (void)setLanguage:(NSString *)lang
+- (void)setLanguage:(NSString *)language
 {
-    NSString *path = [[NSBundle mainBundle] pathForResource:lang ofType:@"lproj"];
-    if (path) {
-        self.bundle = [NSBundle bundleWithPath:path];
+    _language = language;
+    
+    NSString *currentDeviceLangugae = [[NSLocale preferredLanguages] firstObject];
+    NSString *deviceLangugae = [userDefaults objectForKey:kDeviceLanguage];
+    if (![currentDeviceLangugae isEqualToString:deviceLangugae]) {
+        [userDefaults setObject:currentDeviceLangugae forKey:kDeviceLanguage];
+        [userDefaults synchronize];
+        _language = currentDeviceLangugae;
     }
-    if ([lang rangeOfString:@"-"].location != NSNotFound) {
-        lang = [[lang componentsSeparatedByString:@"-"] firstObject];
-        path = [[NSBundle mainBundle] pathForResource:lang ofType:@"lproj"];
-        if (path) {
-            self.bundle = [NSBundle bundleWithPath:path];
-        }
+    
+    [userDefaults setObject:_language forKey:kPreferredLanguage];
+    [userDefaults synchronize];
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource:_language ofType:@"lproj"];
+    if (path) {
+        bundle = [NSBundle bundleWithPath:path];
+    }
+    else {
+        bundle = [NSBundle mainBundle];
     }
 }
 
 - (NSString *)localizedStringForKey:(NSString *)key value:(NSString *)value table:(NSString *)tableName
 {
     @try {
-        return [self.bundle localizedStringForKey:key value:value table:tableName];
+        return [bundle localizedStringForKey:key value:value table:tableName];
     }
     @catch (NSException *exception) {
         
