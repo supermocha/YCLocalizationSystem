@@ -6,9 +6,12 @@
 ```objective-c
 #import "LocalizationSystem.h"
 
+...
+
 YCLocalizedString(key)
 YCLocalizedStringFromTable(key, tbl)
 YCLocalizedStringWithDefaultValue(key, tbl, val)
 YCSetLanguage(lang)
 YCDeviceLanguage
+YCLanguage
 ```
